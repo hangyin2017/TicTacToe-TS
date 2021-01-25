@@ -1,7 +1,7 @@
 module.exports = {
   entry: './src/app.jsx',
   output: {
-    filename: './dist/bundle.js'
+    filename: './bundle.js'
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"]
@@ -9,7 +9,7 @@ module.exports = {
   module: {
     rules: [
       { test: /\.(t|j)sx?$/, exclude: /node_modules/, use: { loader: 'ts-loader' } },
-      { enforce: "pre", test: /\.js$/, exclude: /node_modules/, loader: "source-map-loader" },
+      //{ enforce: "pre", test: /\.js$/, exclude: /node_modules/, loader: "source-map-loader" },
     ]
   },
   externals: {
