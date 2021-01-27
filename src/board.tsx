@@ -105,7 +105,7 @@ export class Board extends React.Component<{}, BoardState> {
     }
     
     // make a move
-    move(pos, val, callback?) {
+    private move(pos: number, val: CellValue, callback?: () => void): void {
         if (this.state.gameState === "" &&
             this.state.cells[pos] === "") {
             let newCells = this.state.cells.slice();
@@ -123,7 +123,7 @@ export class Board extends React.Component<{}, BoardState> {
     }
 
     // handle a new move from player
-    handleNewPlayerMove(pos) {
+    private handleNewPlayerMove(pos: number): void {
         this.move(pos, playerCell, () => {
             // AI make a random move following player's move
             let emptyCells = this.findAllEmptyCells(this.state.cells);
@@ -147,10 +147,16 @@ export class Board extends React.Component<{}, BoardState> {
     }
 }
 
-class Cell extends React.Component {
+interface CellProps extends React.Props<any> {
+    val: CellValue;
+    pos: number;
+    handleMove: () => void;
+}
+
+class Cell extends React.Component<CellProps, {}> {
 
     // position of cell to className
-    posToClassName(pos) {
+    private posToClassName(pos: number): string {
         let className = "cell";
         switch (Math.floor(pos / 3)) {
             case 0: 
@@ -174,7 +180,7 @@ class Cell extends React.Component {
         return className;
     }
 
-    handleClick(e) {
+    private handleClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
         this.props.handleMove();
     }
 
