@@ -1,13 +1,10 @@
 import * as React from "react";
-import { playerCell, aiCell } from "./constants";
+import { CellValue, GameState, playerCell, aiCell } from "./constants";
 
 interface BoardState {
     cells: CellValue[];
     gameState: GameState;
 }
-
-type GameState = "" | "Draw" | "X Wins!" | "O Wins!";
-type CellValue = "" | "X" | "O";
 
 export class Board extends React.Component<{}, BoardState> {
 
